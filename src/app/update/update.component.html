@@ -1,0 +1,11 @@
+<div class=container>
+  <h3>KVTS Update Menu</h3>
+    <div class='form-group'>
+        <select class='form-control' (change)='getVehicle($event)'>
+          <option *ngFor='let vin of vins' [value]='vin.vins'>
+            {{ vin.vins }}
+          </option>
+        </select>
+      <small id='vinHelp' class='form-text text-muted'>Choose a VIN to update.</small>
+    </div>
+</div>

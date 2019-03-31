@@ -1,0 +1,15 @@
+<div class="container">
+  <h3>KVTS Delete Menu</h3>
+    <div class="form-group">
+      <select class="form-control" >
+        <option *ngFor="let vin of vins" [value]="vin.id">
+          {{ vin.vins }}
+        </option>
+      </select>
+
+      <small id="vinHelp" class="form-text text-muted"
+        >This will permanently delete this VIN.</small
+      >
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</div>
