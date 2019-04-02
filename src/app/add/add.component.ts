@@ -10,41 +10,54 @@ import { Router } from '@angular/router';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-
-  constructor(private formBuilder: FormBuilder, private router: Router, private vinService: VinService) { }
-
   addForm: FormGroup;
-  submitted = false;
+  error: string;
+  message: string;
+  successMsg: boolean;
+  failError: boolean;
+  constructor(private formBuilder: FormBuilder, private router: Router, private vinService: VinService) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
-      vinNumber: ['', Validators.required],
-      year: ['', Validators.required],
-      make: ['', Validators.required],
-      model: ['', Validators.required],
-      color: ['', Validators.required],
-      auctionDate: ['', Validators.required],
-      closingDate: ['', Validators.required],
-      runNumber: ['', Validators.required],
-      laborDescription: ['', Validators.required],
-      laborCost: ['', Validators.required],
-      partDescription: ['', Validators.required],
-      partsCost: ['', Validators.required]
+      VINNumber: ['', Validators.compose([Validators.required, Validators.pattern('[A-z0-9]{8}')])],
+      Year: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]{4}')])],
+      Make: ['', Validators.required],
+      Model: ['', Validators.required],
+      Color: ['', Validators.required],
+      AuctionDate: ['', Validators.required],
+      ClosingDate: ['', Validators.required],
+      RunNumber: ['', Validators.required],
+      LaborDescription: ['', Validators.required],
+      LaborCost: ['', Validators.required],
+      PartDescription: ['', Validators.required],
+      PartsCost: ['', Validators.required]
     });
+    this.successMsg = false;
+    this.failError = false;
   }
 
-  onSubmit(){
-    this.submitted = true;
-    if(this.addForm.valid){
-      console.log("this.addForm.value" + this.addForm.value);
+  onSubmit() {
+    if (this.addForm.valid) {
       this.vinService.addVin(this.addForm.value)
       .subscribe( data => {
+        this.failError = false;
+        this.successMsg = true;
+        this.message = data.message;
         console.log(data);
-        this.router.navigate(['']);
-      });
+        this.router.navigate(['/add']);
+      },
+      err => this._handleSubmitSuccess(err));
     }
   }
-
+  private _handleSubmitSuccess(err) {
+    this.failError = true;
+    this.successMsg = false;
+    this.error = err.error.message;
+  }
+  private resetMsgs(err) {
+    this.failError = false;
+    this.successMsg = false;
+  }
   // get the form short name to access the form fields
   get f() { return this.addForm.controls; }
 

@@ -3,98 +3,81 @@
   <div class=row>
     <div class="col-md-3">
     <h6 class="text-center">Vehicle Information</h6>
-      <div class="form-group">
-        <label>VINNumber:</label>
-        <input type="text" formControlName="vinNumber" placeholder="VIN Number" class="form-control" [ngClass]="{ 'is-invalid': f.vinNumber.invalid || f.vinNumber.touched || submitted && f.vinNumber.errors }">
-        <div *ngIf="f.vinNumber.touched || submitted && f.vinNumber.errors">
-          <div *ngIf="f.vinNumber.errors.required">VIN Number is required</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Year:</label>
-        <input type="text" formControlName="year" placeholder="Year" class="form-control" [ngClass]="{ 'is-invalid': f.year.touched || submitted && f.year.errors }">
-        <div *ngIf="f.year.touched || submitted && f.year.errors">
-          <div *ngIf="f.year.errors.required">Year is required</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Make:</label>
-        <input type="text" formControlName="make" placeholder="Make" class="form-control" [ngClass]="{ 'is-invalid': f.make.touched ||submitted && f.make.errors }">
-        <div *ngIf="f.make.touched || submitted && f.make.errors">
-          <div *ngIf="f.make.errors.required">Make is required</div>
-        </div>
-      </div>
-      <div class="form-group">
-          <label>Model:</label>
-          <input type="text" formControlName="model" placeholder="Model" class="form-control" [ngClass]="{ 'is-invalid': f.model.touched || submitted && f.model.errors }">
-          <div *ngIf="f.model.touched || submitted && f.model.errors">
-            <div *ngIf="f.model.errors.required">Model is required</div>
-          </div>
-      </div>
-      <div class="form-group">
-          <label>Color:</label>
-          <input type="text" formControlName="color" placeholder="Color" class="form-control" [ngClass]="{ 'is-invalid': f.color.touched || submitted && f.color.errors }">
-          <div *ngIf="f.color.touched || submitted && f.color.errors">
-            <div *ngIf="f.color.errors.required">Color is required</div>
-          </div>
-      </div>
+    <div class="form-group">
+      <label>VIN:
+        <input type="text" formControlName="VINNumber" class="form-control">
+      </label>
+      <div class="alert alert-danger" *ngIf="!f['VINNumber'].valid && f['VINNumber'].touched">VIN is required and must be 8 characters!</div>
+    </div>
+    <div class="form-group">
+      <label>Year:</label>
+      <input required type="text" formControlName="Year" class="form-control">
+      <div class="alert alert-danger" *ngIf="!f['Year'].valid && f['Year'].touched">Year is required and must be numeric and 4 characters!</div>
+    </div>
+    <div class="form-group">
+      <label>Make:</label>
+      <input type="text" formControlName="Make" class="form-control">
+      <div class="alert alert-danger" *ngIf="!f['Make'].valid && f['Make'].touched">Make is required!</div>
+    </div>
+    <div class="form-group">
+        <label>Model:</label>
+        <input type="text" formControlName="Model"class="form-control">
+        <div class="alert alert-danger" *ngIf="!f['Model'].valid && f['Model'].touched">Model is required!</div>
+    </div>
+    <div class="form-group">
+        <label>Color:</label>
+        <input type="text" formControlName="Color" class="form-control">
+        <div class="alert alert-danger" *ngIf="!f['Color'].valid && f['Color'].touched">Model is required!</div>
+    </div>
 
-    </div>
-      <div class="col-md-3">
-          <h6 class="text-center">Auction Information</h6>
-          <div class="form-group">
-              <label>Auction Date:</label>
-              <input type="date" formControlName="auctionDate" placeholder="Auction Date" class="form-control" [ngClass]="{ 'is-invalid': f.auctionDate.touched || submitted && f.auctionDate.errors }">
-              <div *ngIf="f.auctionDate.touched || submitted && f.auctionDate.errors">
-                <div *ngIf="f.auctionDate.errors.required">Auction Date is required</div>
-              </div>
-          </div>
-        <div class="form-group">
-              <label>Closing Date:</label>
-              <input type="date" formControlName="closingDate" placeholder="Closing Date" class="form-control" [ngClass]="{ 'is-invalid': f.closingDate.touched || submitted && f.closingDate.errors }">
-              <div *ngIf="f.closingDate.touched || submitted && f.closingDate.errors">
-                <div *ngIf="f.closingDate.errors.required">Closing Date is required</div>
-              </div>
-          </div>
-          <div class="form-group">
-              <label>Run Number:</label>
-              <input type="text" formControlName="runNumber" placeholder="Run Number" class="form-control" [ngClass]="{ 'is-invalid': f.runNumber.touched || submitted && f.runNumber.errors }">
-              <div *ngIf="f.runNumber.touched || submitted && f.runNumber.errors">
-                <div *ngIf="f.runNumber.errors.required">Run Number is required</div>
-              </div>
-          </div>
-    </div>
+  </div>
     <div class="col-md-3">
-      <h6 class="text-center">Labor Information</h6>
+        <h6 class="text-center">Auction Information</h6>
+        <div class="form-group">
+            <label>Auction Date:</label>
+            <input type="date" formControlName="AuctionDate" class="form-control">
+            <div class="alert alert-danger" *ngIf="!f['AuctionDate'].valid && f['AuctionDate'].touched">Auction ate is required!</div>
+        </div>
       <div class="form-group">
-          <label>Labor Description:</label>
-          <input type="text" formControlName="laborDescription" placeholder="Labor Description" class="form-control" [ngClass]="{ 'is-invalid': f.laborDescription.touched || submitted && f.laborDescription.errors }">
-          <div *ngIf="f.laborDescription.touched || submitted && f.laborDescription.errors">
-            <div *ngIf="f.laborDescription.errors.required">Labor Description is required</div>
-          </div>
-      </div>
-      <div class="form-group">
-          <label>Labor Cost:</label>
-          <input type="text" formControlName="laborCost" placeholder="Labor Cost" class="form-control" [ngClass]="{ 'is-invalid': f.laborCost.touched || submitted && f.laborCost.errors }">
-          <div *ngIf="f.laborCost.touched || submitted && f.laborCost.errors">
-            <div *ngIf="f.laborCost.errors.required">Labor Cost is required</div>
-          </div>
-      </div>
-      <div class="form-group">
-          <label>Part Description:</label>
-          <input type="text" formControlName="partDescription" placeholder="Part Description" class="form-control" [ngClass]="{ 'is-invalid': f.partDescription.touched || submitted && f.partDescription.errors }">
-            <div *ngIf="f.partDescription.touched || submitted && f.partDescription.errors">
-            <div *ngIf="f.partDescription.errors.required">Part Description is required</div>
-          </div>
-      </div>
-      <div class="form-group">
-          <label>Parts Cost:</label>
-          <input type="text" formControlName="partsCost" placeholder="Parts Cost" class="form-control" [ngClass]="{ 'is-invalid': f.partsCost.touched || submitted && f.partsCost.errors } [ngClass]="{ 'is-invalid': f.partsCost.touched || submitted && f.partsCost.errors }">
-          <div *ngIf="f.partsCost.touched || submitted && f.partsCost.errors">
-            <div *ngIf="f.partsCost.errors.required">Parts Cost is required</div>
-          </div>
-      </div>
-      <button type="submit" [disabled]="!addForm.valid" class="btn btn-primary">Save</button>
+            <label>Closing Date:</label>
+            <input type="date" formControlName="ClosingDate"class="form-control">
+            <div class="alert alert-danger" *ngIf="!f['ClosingDate'].valid && f['ClosingDate'].touched">Closing Date is required!</div>
+        </div>
+        <div class="form-group">
+            <label>Run Number:</label>
+            <input type="text" formControlName="RunNumber"class="form-control">
+            <div class="alert alert-danger" *ngIf="!f['RunNumber'].valid && f['RunNumber'].touched">Run Number is required</div>
+        </div>
+  </div>
+  <div class="col-md-3">
+    <h6 class="text-center">Labor Information</h6>
+    <div class="form-group">
+        <label>Labor Description:</label>
+        <input type="text" formControlName="LaborDescription" class="form-control">
+        <div class="alert alert-danger" *ngIf="!f['LaborDescription'].valid && f['LaborDescription'].touched">Labor Description is required!</div>
+    </div>
+    <div class="form-group">
+        <label>Labor Cost:</label>
+        <input type="number" name="laborCost" id="LaborCost" formControlName="LaborCost" class="form-control currency">
+        <div class="alert alert-danger" *ngIf="!f['LaborCost'].valid && f['LaborCost'].touched">Labor Cost is required!</div>
+    </div>
+    <div class="form-group">
+        <label>Part Description:</label>
+        <input type="text" formControlName="PartDescription"class="form-control">
+        <div class="alert alert-danger" *ngIf="!f['PartDescription'].valid && f['PartDescription'].touched">Part Description is required!</div>
+    </div>
+    <div class="form-group">
+        <label>Parts Cost:</label>
+        <input type="number" name="PartsCost" id="PartsCost" formControlName="PartsCost" class="form-control currency">
+        <div class="alert alert-danger" *ngIf="!f['PartsCost'].valid && f['PartsCost'].touched">Parts Cost is required!</div>
+    </div>
+    <div class="form-group">
+        <button type="submit" [disabled]="!addForm.valid" class="btn btn-primary">Save</button>&nbsp;
+        <button type="reset" class="btn btn-primary" (click)="resetMsgs()">Reset</button>
+        <br><Br><p *ngIf="failError" class="alert alert-danger" id=saveError>{{ error }}</p>
+         <p *ngIf="successMsg" class="alert alert-success" id=saveSuccess>{{ message }}</p>
+    </div>
+
   </div>
   </div>
 </form>

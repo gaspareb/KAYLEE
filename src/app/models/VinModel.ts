@@ -1,4 +1,3 @@
 export class VinModel {
-  id: string;
-  vins: string;
+  VINNumber: string;
 }

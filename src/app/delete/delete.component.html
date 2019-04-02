@@ -1,15 +1,14 @@
 <div class="container">
   <h3>KVTS Delete Menu</h3>
     <div class="form-group">
-      <select class="form-control" >
-        <option *ngFor="let vin of vins" [value]="vin.id">
-          {{ vin.vins }}
+      <select #t class="form-control" >
+        <option *ngFor="let VINNumber of vinNumbers" [value]="VINNumber">
+          {{ VINNumber }}
         </option>
       </select>
-
-      <small id="vinHelp" class="form-text text-muted"
-        >This will permanently delete this VIN.</small
-      >
+      <small id="vinHelp" class="form-text text-muted">This will permanently delete this VIN.</small>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="deleteVIN(t.value)">Submit</button>
+    <br><Br><p *ngIf="failError" class="alert alert-danger" id=saveError>{{ error }}</p>
+      <p *ngIf="successMsg" class="alert alert-success" id=saveSuccess>{{ message }}</p>
 </div>

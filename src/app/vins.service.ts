@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { VinModel } from './models/VinModel';
 import { VehicleModel } from './models/VehicleModel';
 
@@ -14,15 +14,15 @@ export class VinService {
   baseurl: string = 'http://localhost:3000/';
 
   getAllVins() {
-    return this.http.get<VinModel[]>(this.baseurl + 'vins');
+    return this.http.get<any>(this.baseurl + 'vehicles');
   }
 
-  addVin(vin: VinModel) {
-    return this.http.post(this.baseurl + 'vin', vin);
+  addVin(vehicleModel: any) {
+    return this.http.post<any>(this.baseurl + 'vehicles/add/', vehicleModel);
   }
 
-  delVin(vin: VinModel) {
-    return this.http.delete(this.baseurl + 'vin'  + '/' + vin);
+  delVin(vin: any) {
+    return this.http.delete<any>(this.baseurl + 'vehicles'  + '/' + vin);
   }
 
   getVehicle(vin: string) {
