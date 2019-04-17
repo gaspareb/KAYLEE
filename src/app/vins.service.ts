@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { VinModel } from './models/VinModel';
-import { VehicleModel } from './models/VehicleModel';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +24,27 @@ export class VinService {
   }
 
   getVehicle(vin: string) {
-    return this.http.get<VehicleModel>(this.baseurl + 'vehicles'  + '/' + vin);
+    return this.http.get<any>(this.baseurl + 'vehicles'  + '/' + vin);
   }
 
+  updateVin(vehicleModel: any) {
+    return this.http.put<any>(this.baseurl + 'vehicles/update/', vehicleModel);
+  }
+
+  getSummaryReport() {
+    return this.http.get<any>(this.baseurl + 'reports/summary');
+  }
+
+  getAllAuctionDates() {
+    return this.http.get<any>(this.baseurl + 'reports/auctionDates');
+  }
+
+  printItemized(vins: any) {
+    console.log('1:'  + vins);
+    return this.http.get<any>(this.baseurl + 'reports/itemized/print/' + vins);
+  }
+
+  getItemized(auctionDate: any) {
+    return this.http.get<any>(this.baseurl + 'reports/itemized/' + auctionDate);
+  }
 }

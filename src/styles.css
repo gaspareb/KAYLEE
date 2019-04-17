@@ -50,3 +50,7 @@ form{
   color: #333;
   white-space: nowrap;
 }
+.container{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

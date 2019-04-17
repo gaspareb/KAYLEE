@@ -1,11 +1,100 @@
 <div class=container>
-  <h3>KVTS Update Menu</h3>
-    <div class='form-group'>
-        <select class='form-control'>
-          <option *ngFor='let vin of vins' [value]='vin.vins'>
-            {{ vin.vins }}
-          </option>
-        </select>
-      <small id='vinHelp' class='form-text text-muted'>Choose a VIN to update.</small>
-    </div>
+    <h3>Update Vehicle Menu</h3>
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+      <input type="text" hidden formControlName="_id" class="form-control">
+      <input type="text" hidden formControlName="VINNumber" class="form-control">
+        <div class=row>
+            <div class="col-sm-2">
+                <div class='form-group'>
+                  <select #t class="form-control" (change)="getVehicle(t.value)">
+                    <option value="" selected disabled>Please select</option>
+                    <option *ngFor="let VINNumber of vinNumbers">
+                      {{ VINNumber.VINNumber }}
+                    </option>
+                    </select>
+                  <small id='vinHelp' class='form-text text-muted'>Choose a VIN to update.</small>
+                </div>
+            </div>
+            <div class="col-sm-10">
+                <div class=row>
+                  <div class="col-md-3">
+                      <h6 class="text-center">VEHICLE INFORMATION</h6>
+                      <div class="form-group">
+                        <label>Year:</label>
+                        <input required type="text" formControlName="Year" class="form-control">
+                        <div class="alert alert-danger" *ngIf="!f['Year'].valid && f['Year'].touched">Year is required and must be numeric and 4 characters!</div>
+                      </div>
+                      <div class="form-group">
+                        <label>Make:</label>
+                        <input type="text" formControlName="Make"  class="form-control">
+                        <div class="alert alert-danger" *ngIf="!f['Make'].valid && f['Make'].touched">Make is required!</div>
+                      </div>
+                      <div class="form-group">
+                          <label>Model:</label>
+                          <input type="text" formControlName="Model" class="form-control">
+                          <div class="alert alert-danger" *ngIf="!f['Model'].valid && f['Model'].touched">Model is required!</div>
+                      </div>
+                      <div class="form-group">
+                          <label>Color:</label>
+                          <input type="text" formControlName="Color"  class="form-control">
+                          <div class="alert alert-danger" *ngIf="!f['Color'].valid && f['Color'].touched">Color is required!</div>
+                      </div>
+                    </div>
+                      <div class="col-md-3">
+                          <h6 class="text-center">AUCTION INFORMATION</h6>
+                          <div class="form-group">
+                              <label>Auction Date:</label>
+                              <input type="date" formControlName="AuctionDate"  class="form-control">
+                              <div class="alert alert-danger" *ngIf="!f['AuctionDate'].valid && f['AuctionDate'].touched" value="vehicleModel.AuctionDate">Auction date is required!</div>
+                          </div>
+                        <div class="form-group">
+                              <label>Closing Date:</label>
+                              <input type="date" formControlName="ClosingDate" class="form-control">
+                              <div class="alert alert-danger" *ngIf="!f['ClosingDate'].valid && f['ClosingDate'].touched">Closing Date is required!</div>
+                          </div>
+                          <div class="form-group">
+                              <label>Run Number:</label>
+                              <input type="text" formControlName="RunNumber" class="form-control">
+                              <div class="alert alert-danger" *ngIf="!f['RunNumber'].valid && f['RunNumber'].touched">Run Number is required</div>
+                          </div>
+                    </div>
+                    <div class="col-md-3">
+                      <h6 class="text-center">LABOR INFORMATION</h6>
+                      <div class="form-group">
+                          <label>Labor Description:</label>
+                          <input type="text" formControlName="LaborDescription"  class="form-control">
+                          <div class="alert alert-danger" *ngIf="!f['LaborDescription'].valid && f['LaborDescription'].touched">Labor Description is required!</div>
+                      </div>
+                      <div class="form-group">
+                          <label>Labor Cost:</label>
+                          <input type="number" name="laborCost" id="LaborCost" formControlName="LaborCost" class="form-control currency">
+                          <div class="alert alert-danger" *ngIf="!f['LaborCost'].valid && f['LaborCost'].touched">Labor Cost is required!</div>
+                      </div>
+                      <div class="form-group">
+                          <label>Part Description:</label>
+                          <input type="text" formControlName="PartDescription" class="form-control">
+                          <div class="alert alert-danger" *ngIf="!f['PartDescription'].valid && f['PartDescription'].touched">Part Description is required!</div>
+                      </div>
+                      <div class="form-group">
+                          <label>Parts Cost:</label>
+                          <input type="number" name="PartsCost" id="PartsCost" formControlName="PartsCost" class="form-control currency">
+                          <div class="alert alert-danger" *ngIf="!f['PartsCost'].valid && f['PartsCost'].touched">Parts Cost is required!</div>
+                      </div>
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-primary">Save</button>&nbsp;
+                          <br><Br><p *ngIf="failError" class="alert alert-danger" id=saveError>{{ error }}</p>
+                            <p *ngIf="successMsg" class="alert alert-success" id=saveSuccess>{{ message }}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <h6 class="text-center">TOTAL COST</h6>
+                      <div class="form-group">
+                          <label>Total Cost:</label>
+                          <input type="text" name="TotalCost" id="TotalCost" formControlName="TotalCost"  class="form-control" [(ngModel)]="updateForm.value.LaborCost + updateForm.value.PartsCost" >
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </form>
 </div>

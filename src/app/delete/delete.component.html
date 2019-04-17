@@ -1,9 +1,10 @@
 <div class="container">
-  <h3>KVTS Delete Menu</h3>
+  <h3>Delete Vehicle Menu</h3>
     <div class="form-group">
-      <select #t class="form-control" >
-        <option *ngFor="let VINNumber of vinNumbers" [value]="VINNumber">
-          {{ VINNumber }}
+      <select #t class="form-control">
+        <option value="" selected disabled>Please select</option>
+        <option *ngFor="let VINNumber of vinNumbers">
+          {{ VINNumber.VINNumber }}
         </option>
       </select>
       <small id="vinHelp" class="form-text text-muted">This will permanently delete this VIN.</small>

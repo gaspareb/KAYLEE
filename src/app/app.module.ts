@@ -9,19 +9,21 @@ import { UpdateComponent } from './update/update.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
-import { NavComponent } from './nav/nav.component';
 import { DeleteComponent } from './delete/deletecomponent';
 import { NotFoundComponent } from './notFound/notFound.component';
 import { ReportsComponent } from './reports/reports.component';
 import { LoginComponent } from './login/login.component';
 import { AddComponent } from './add/add.component';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ItemizedComponent } from './reports/itemized/itemized.component';
+import { SummmaryComponent } from './reports/summmary/summmary.component';
+import { IndividualComponent } from './reports/individual/individual.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    NavComponent,
     HeaderComponent,
     FooterComponent,
     UpdateComponent,
@@ -29,8 +31,11 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReportsComponent,
     NotFoundComponent,
     LoginComponent,
-    AddComponent
-  ],
+    AddComponent,
+    ItemizedComponent,
+    SummmaryComponent,
+    IndividualComponent
+    ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -42,12 +47,14 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
       {path: 'add' , component: AddComponent},
       {path: 'update' , component: UpdateComponent},
       {path: 'delete' , component: DeleteComponent},
-      {path: 'reports' , component: ReportsComponent},
+      {path: 'reports/itemized' , component: ItemizedComponent},
+      {path: 'reports/summary' , component: SummmaryComponent},
+      {path: 'reports/individual' , component: IndividualComponent},
       {path: 'login' , component: LoginComponent},
       {path: '**' , component: NotFoundComponent}
     ])
   ],
-  providers: [VinService],
+  providers: [VinService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

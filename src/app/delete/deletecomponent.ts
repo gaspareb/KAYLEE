@@ -24,16 +24,17 @@ export class DeleteComponent implements OnInit {
   }
 
   getAllVins() {
-    this.vinService.getAllVins().subscribe(data => { this.vinNumbers = data; });
+// tslint:disable-next-line: max-line-length
+    this.vinService.getAllVins().subscribe(data => { this.vinNumbers = data; console.log(this.vinNumbers); });
   }
 
   deleteVIN(event: any) {
-    console.log(event);
     this.vinService.delVin(event)
     .subscribe( data => {
       this.failError = false;
       this.successMsg = true;
       this.message = data.message;
+      this.getAllVins();
       this.router.navigate(['/delete']);
     },
     err => this._handleSubmitSuccess(err));

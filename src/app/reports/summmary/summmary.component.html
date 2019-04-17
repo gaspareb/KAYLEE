@@ -1,0 +1,23 @@
+<div class=container>
+  <h3>Summary Report</h3>
+<table  class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>AUCTION DATE</th>
+        <th>COUNT OF CARS</th>
+        <th>COST OF PARTS</th>
+        <th>COST OF LABOR</th>
+        <th>TOTAL COST OF REPAIR</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vehicle of vehicles">
+        <td>{{ vehicle.AuctionDate.split("T")[0]  | date: 'yyyy-MM-dd'}}</td>
+        <td>{{ vehicle.VINS }}</td>
+        <td>{{ vehicle.LaborSum | currency}}</td>
+        <td>{{ vehicle.PartsSum | currency}}</td>
+        <td>{{ vehicle.TotalCost | currency}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

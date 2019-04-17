@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { VinService } from '../vins.service';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
   selector: 'app-add',
@@ -30,7 +31,8 @@ export class AddComponent implements OnInit {
       LaborDescription: ['', Validators.required],
       LaborCost: ['', Validators.required],
       PartDescription: ['', Validators.required],
-      PartsCost: ['', Validators.required]
+      PartsCost: ['', Validators.required],
+      TotalCost: new FormControl({ value: '0.00', disabled: true})
     });
     this.successMsg = false;
     this.failError = false;
@@ -43,21 +45,24 @@ export class AddComponent implements OnInit {
         this.failError = false;
         this.successMsg = true;
         this.message = data.message;
-        console.log(data);
         this.router.navigate(['/add']);
+        // this.ngOnInit();
       },
       err => this._handleSubmitSuccess(err));
     }
   }
+
   private _handleSubmitSuccess(err) {
     this.failError = true;
     this.successMsg = false;
     this.error = err.error.message;
   }
+
   private resetMsgs(err) {
     this.failError = false;
     this.successMsg = false;
   }
+
   // get the form short name to access the form fields
   get f() { return this.addForm.controls; }
 
