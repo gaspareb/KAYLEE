@@ -16,16 +16,19 @@ export class ItemizedComponent implements OnInit {
   public show = false;
   itemizedForm: FormGroup;
   checkedVins  = [];
+  public hasChanged = false;
+  public hasChecks = false;
+
 
   constructor(private datePipe: DatePipe, private router: Router, private vinService: VinService, private formBuilder: FormBuilder ) { }
 
   ngOnInit() {
     this.getAllAuctionDates();
     this.itemizedForm = this.formBuilder.group({
-
     });
 
   }
+
   getAllAuctionDates() {
     this.vinService.getAllAuctionDates().subscribe(data => { this.auctionDates = data; });
 
@@ -40,16 +43,20 @@ export class ItemizedComponent implements OnInit {
     if (!this.show) {
       this.show = !this.show;
     }
+    this.hasChecks = false;
+    this.hasChanged = false;
   }
 
   onClicked(event) {
     this.checkedVins.push(event.target.value);
+    this.hasChecks = true;
   }
-
 
   printMe() {
     if (document.getElementById('theButton').innerHTML === 'Print') {
       window.print();
+    } else {
+      this.hasChanged = true;
     }
     if (this.checkedVins) {
       document.getElementById('theButton').innerHTML = 'Print';
