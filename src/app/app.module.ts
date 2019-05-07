@@ -11,14 +11,13 @@ import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
 import { DeleteComponent } from './delete/deletecomponent';
 import { NotFoundComponent } from './notFound/notFound.component';
-import { ReportsComponent } from './reports/reports.component';
 import { LoginComponent } from './login/login.component';
 import { AddComponent } from './add/add.component';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ItemizedComponent } from './reports/itemized/itemized.component';
 import { SummmaryComponent } from './reports/summmary/summmary.component';
-import { IndividualComponent } from './reports/individual/individual.component';
 import { DatePipe } from '@angular/common';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -28,13 +27,11 @@ import { DatePipe } from '@angular/common';
     FooterComponent,
     UpdateComponent,
     DeleteComponent,
-    ReportsComponent,
     NotFoundComponent,
     LoginComponent,
     AddComponent,
     ItemizedComponent,
-    SummmaryComponent,
-    IndividualComponent
+    SummmaryComponent
     ],
   imports: [
     BrowserModule,
@@ -44,14 +41,13 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     RouterModule.forRoot([
       {path: '' , component: LoginComponent},
-      {path: 'add' , component: AddComponent},
+      {path: 'add' , component: AddComponent, canActivate: [AuthGuard]},
       {path: 'update' , component: UpdateComponent},
       {path: 'delete' , component: DeleteComponent},
       {path: 'reports/itemized' , component: ItemizedComponent},
       {path: 'reports/summary' , component: SummmaryComponent},
-      {path: 'reports/individual' , component: IndividualComponent},
       {path: 'login' , component: LoginComponent},
-      {path: '**' , component: NotFoundComponent}
+      {path: '**' , component: LoginComponent}
     ])
   ],
   providers: [VinService, DatePipe],

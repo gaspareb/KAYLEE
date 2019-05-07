@@ -13,7 +13,7 @@ export class SummmaryComponent implements OnInit {
   constructor( private router: Router, private vinService: VinService) { }
 
   ngOnInit() {
-    this.vinService.getSummaryReport().subscribe(data => { this.vehicles = data; console.log(data); });
+    this.vinService.getSummaryReport().subscribe(data => { this.vehicles = data; });
   }
 
 }

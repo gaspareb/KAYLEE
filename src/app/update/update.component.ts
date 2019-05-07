@@ -52,9 +52,8 @@ export class UpdateComponent  implements OnInit {
   }
 
   getVehicle(event: any) {
-    console.log('getVehicle:' + event);
 // tslint:disable-next-line: max-line-length
-    this.vinService.getVehicle(event).subscribe(vehicledata => { this.vehicleModel = vehicledata; console.log(this.datePipe.transform(vehicledata[0].DateCreated, 'mm-dd-yyyy')); this.updateForm.patchValue({
+    this.vinService.getVehicle(event).subscribe(vehicledata => { this.vehicleModel = vehicledata; this.updateForm.patchValue({
       VINNumber: vehicledata[0].VINNumber,
       Year: vehicledata[0].Year,
       _id: vehicledata[0]._id,

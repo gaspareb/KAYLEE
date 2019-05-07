@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { VinService } from './vins.service';
+import { AuthService } from './auth.service';
 
-describe('VinsService', () => {
+describe('AuthService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: VinService = TestBed.get(VinService);
+    const service: AuthService = TestBed.get(AuthService);
     expect(service).toBeTruthy();
   });
 });

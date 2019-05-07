@@ -9,7 +9,9 @@ export class VinService {
   constructor(private http: HttpClient) { }
 
 // tslint:disable-next-line: no-inferrable-types
-  baseurl: string = 'http://localhost:3000/';
+  // baseurl: string = 'https://www.superiortechnologysolutions.net:3000/';
+
+  baseurl = 'http://localhost:3000/';
 
   getAllVins() {
     return this.http.get<any>(this.baseurl + 'vehicles');
@@ -40,7 +42,6 @@ export class VinService {
   }
 
   printItemized(vins: any) {
-    console.log('1:'  + vins);
     return this.http.get<any>(this.baseurl + 'reports/itemized/print/' + vins);
   }
 

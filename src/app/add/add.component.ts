@@ -58,7 +58,7 @@ export class AddComponent implements OnInit {
     this.error = err.error.message;
   }
 
-  private resetMsgs(err) {
+  resetMsgs() {
     this.failError = false;
     this.successMsg = false;
   }

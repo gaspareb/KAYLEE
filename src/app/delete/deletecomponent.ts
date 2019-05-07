@@ -25,7 +25,7 @@ export class DeleteComponent implements OnInit {
 
   getAllVins() {
 // tslint:disable-next-line: max-line-length
-    this.vinService.getAllVins().subscribe(data => { this.vinNumbers = data; console.log(this.vinNumbers); });
+    this.vinService.getAllVins().subscribe(data => { this.vinNumbers = data; });
   }
 
   deleteVIN(event: any) {
