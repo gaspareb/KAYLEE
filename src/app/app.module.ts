@@ -42,10 +42,10 @@ import { AuthGuard } from './auth.guard';
     RouterModule.forRoot([
       {path: '' , component: LoginComponent},
       {path: 'add' , component: AddComponent, canActivate: [AuthGuard]},
-      {path: 'update' , component: UpdateComponent},
-      {path: 'delete' , component: DeleteComponent},
-      {path: 'reports/itemized' , component: ItemizedComponent},
-      {path: 'reports/summary' , component: SummmaryComponent},
+      {path: 'update' , component: UpdateComponent, canActivate: [AuthGuard]},
+      {path: 'delete' , component: DeleteComponent, canActivate: [AuthGuard]},
+      {path: 'reports/itemized' , component: ItemizedComponent, canActivate: [AuthGuard]},
+      {path: 'reports/summary' , component: SummmaryComponent, canActivate: [AuthGuard]},
       {path: 'login' , component: LoginComponent},
       {path: '**' , component: LoginComponent}
     ])
