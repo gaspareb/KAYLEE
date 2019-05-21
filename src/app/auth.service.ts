@@ -8,7 +8,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   loggedInStatus = false;
-  baseurl: string = 'https://www.superiortechnologysolutions.net:3000/';
+  baseurl = 'https://www.superiortechnologysolutions.net:3000/';
    // baseurl: string = 'http://localhost:3000/';
   getUserDetails(email, password) {
     return this.http.post<any>(this.baseurl + 'auth', { email, password});
