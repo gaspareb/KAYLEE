@@ -54,3 +54,12 @@ form{
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+.table td, .table th {
+  border-top: 0px solid #dee2e6;
+  font-size: 20px;
+}
+
+tbody{
+  border-top: 1px solid #dee2e6;
+}

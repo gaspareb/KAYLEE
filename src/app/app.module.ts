@@ -13,11 +13,12 @@ import { DeleteComponent } from './delete/deletecomponent';
 import { NotFoundComponent } from './notFound/notFound.component';
 import { LoginComponent } from './login/login.component';
 import { AddComponent } from './add/add.component';
-import {FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ItemizedComponent } from './reports/itemized/itemized.component';
 import { SummmaryComponent } from './reports/summmary/summmary.component';
 import { DatePipe } from '@angular/common';
 import { AuthGuard } from './auth.guard';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AuthGuard } from './auth.guard';
     LoginComponent,
     AddComponent,
     ItemizedComponent,
-    SummmaryComponent
+    SummmaryComponent,
+    NavComponent
     ],
   imports: [
     BrowserModule,
