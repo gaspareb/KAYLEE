@@ -1,0 +1,57 @@
+<div class=container>
+  <h3>Itemized Report</h3>
+      <div class=row>
+        <div class="col-sm-6">
+            <div class='form-group'>
+              <label>Auction Date</label>
+              <select #t class="form-control" (change)="getItemized(t.value)">
+                <option value="" selected disabled>Please select</option>
+                <option *ngFor="let auctionDate of auctionDates">
+                  {{ auctionDate.AuctionDate.split("T")[0]  | date: 'yyyy-MM-dd'}}
+                </option>
+              </select>
+            </div>
+            <div class='form-group'>
+              <button [disabled]="!hasChanged" (click)="getItemized(t.value)" id=theResetButton type="button" class="btn btn-primary" toggle>Reset the Form</button>
+            </div>
+        </div>
+      </div>
+</div>
+<form [formGroup]="itemizedForm" (ngSubmit)="printMe()">
+  <div class=section name=itemizedSection id=itemizedSection *ngIf="show">
+      <table class="table table-striped">
+        <tr class="">
+          <td><button [disabled]="!hasChecks" id=theButton type="submit" class="btn btn-primary">Select</button></td>
+        </tr>
+        <tbody *ngFor="let vehicle of itemized">
+          <tr>
+            <td><input type="checkbox" name=vins id=vins (change)="onClicked($event)" value="{{ vehicle.VINNumber }}"></td>
+          </tr>
+          <tr>
+              <td>Run:</td><td>{{ vehicle.RunNumber }}</td>
+              <td>VIN:</td><td>{{ vehicle.VINNumber }}</td>
+          </tr>
+          <tr>
+              <td>Year:</td><td>{{ vehicle.Year }}</td>
+              <td>Make:</td><td>{{ vehicle.Make }}</td>
+          </tr>
+          <tr>
+              <td>Model:</td><td>{{ vehicle.Model }}</td>
+              <td>Color:</td><td>{{ vehicle.Color }}</td>
+          </tr>
+          <tr>
+              <td>Labor Description:</td><td>{{ vehicle.LaborDescription }}</td>
+              <td>Labor Cost</td><td>{{ vehicle.LaborCost | currency }}</td>
+          </tr>
+          <tr>
+              <td>Parts Description:</td><td>{{ vehicle.PartDescription }}</td>
+              <td>Parts Cost</td><td>{{ vehicle.PartsCost | currency }}</td>
+          </tr>
+          <tr>
+              <td>Created Date:</td><td>{{ vehicle.DateCreated.split("T")[0] | date: 'yyyy-MM-dd' }}</td>
+              <td>Total Cost:</td><td>{{ vehicle.Total | currency }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</form>

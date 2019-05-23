@@ -18,15 +18,15 @@ export class DeleteComponent implements OnInit {
   constructor(private router: Router, private vinService: VinService) { }
 
   ngOnInit() {
-    this.getAllVins();
+    // this.getAllVins();
     this.successMsg = false;
     this.failError = false;
   }
 
-  getAllVins() {
-// tslint:disable-next-line: max-line-length
-    this.vinService.getAllVins().subscribe(data => { this.vinNumbers = data; });
-  }
+//   getAllVins() {
+// // tslint:disable-next-line: max-line-length
+//     this.vinService.getAllVins().subscribe(data => { this.vinNumbers = data; });
+//   }
 
   deleteVIN(event: any) {
     this.vinService.delVin(event)
@@ -34,7 +34,7 @@ export class DeleteComponent implements OnInit {
       this.failError = false;
       this.successMsg = true;
       this.message = data.message;
-      this.getAllVins();
+      // this.getAllVins();
       this.router.navigate(['/delete']);
     },
     err => this._handleSubmitSuccess(err));

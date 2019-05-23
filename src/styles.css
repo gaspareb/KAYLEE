@@ -55,11 +55,21 @@ form{
   padding-bottom: 20px;
 }
 
-.table td, .table th {
+ .table td, .table th {
   border-top: 0px solid #dee2e6;
-  font-size: 20px;
 }
 
-tbody{
+/* tbody{
   border-top: 1px solid #dee2e6;
+} */
+
+.navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link {
+  color: red;
+}
+
+.row-bordered:after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid #ccc;
+  margin: 0 15px;
 }

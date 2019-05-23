@@ -21,14 +21,18 @@ export class UpdateComponent  implements OnInit {
   message: string;
   successMsg: boolean;
   failError: boolean;
+  searchErrorMsg: string;
+  searchError: boolean;
 
   constructor(private datePipe: DatePipe, private formBuilder: FormBuilder, private router: Router, private vinService: VinService) { }
 
   ngOnInit() {
-    this.getAllVins();
+   // this.getAllVins();
     this.vinPicked = false;
+    this.searchError = false;
     this.updateForm = this.formBuilder.group({
       _id: ['', Validators.required],
+      searchVIN: '',
       VINNumber: ['', Validators.compose([Validators.required, Validators.pattern('[A-z0-9]{8}')])],
       Year: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]{4}')])],
       Make: ['', Validators.required],
@@ -51,28 +55,60 @@ export class UpdateComponent  implements OnInit {
     this.vinPicked = false;
   }
 
-  getVehicle(event: any) {
-// tslint:disable-next-line: max-line-length
-    this.vinService.getVehicle(event).subscribe(vehicledata => { this.vehicleModel = vehicledata; this.updateForm.patchValue({
-      VINNumber: vehicledata[0].VINNumber,
-      Year: vehicledata[0].Year,
-      _id: vehicledata[0]._id,
-      Make: vehicledata[0].Make,
-      Model: vehicledata[0].Model,
-      Color: vehicledata[0].Color,
-      DateCreated: this.datePipe.transform(vehicledata[0].DateCreated.split('T')[0], 'yyyy-MM-dd'),
-      AuctionDate: this.datePipe.transform(vehicledata[0].AuctionDate.split('T')[0], 'yyyy-MM-dd'),
-      ClosingDate: this.datePipe.transform(vehicledata[0].ClosingDate.split('T')[0], 'yyyy-MM-dd'),
-      RunNumber: vehicledata[0].RunNumber,
-      LaborDescription: vehicledata[0].LaborDescription,
-      LaborCost: vehicledata[0].LaborCost,
-      PartDescription: vehicledata[0].PartDescription,
-      PartsCost: vehicledata[0].PartsCost,
-      TotalCost: vehicledata[0].TotalCost
-    });
-   });
-    this.vinPicked = true;
+  getVehicleSearch(event: any) {
+    this.resetMsgs();
+    this.ngOnInit();
+    if (event.length === 8) {
+    // tslint:disable-next-line: max-line-length
+        this.vinService.getVehicle(event).subscribe(vehicledata => { this.vehicleModel = vehicledata; this.updateForm.patchValue({
+          searchVIN: '',
+          VINNumber: vehicledata[0].VINNumber,
+          Year: vehicledata[0].Year,
+          _id: vehicledata[0]._id,
+          Make: vehicledata[0].Make,
+          Model: vehicledata[0].Model,
+          Color: vehicledata[0].Color,
+          DateCreated: this.datePipe.transform(vehicledata[0].DateCreated.split('T')[0], 'yyyy-MM-dd'),
+          AuctionDate: this.datePipe.transform(vehicledata[0].AuctionDate.split('T')[0], 'yyyy-MM-dd'),
+          ClosingDate: this.datePipe.transform(vehicledata[0].ClosingDate.split('T')[0], 'yyyy-MM-dd'),
+          RunNumber: vehicledata[0].RunNumber,
+          LaborDescription: vehicledata[0].LaborDescription,
+          LaborCost: vehicledata[0].LaborCost,
+          PartDescription: vehicledata[0].PartDescription,
+          PartsCost: vehicledata[0].PartsCost,
+          TotalCost: vehicledata[0].TotalCost
+        });
+       }, error => {this.searchError = true; this.searchErrorMsg = error.error.message; });
+        this.vinPicked = true;
+      } else {
+        this.searchError = true;
+        this.searchErrorMsg = 'VIN must be 8 characters long';
+      }
   }
+
+//   getVehicle(event: any) {
+//     this.searchError = false;
+// // tslint:disable-next-line: max-line-length
+//     this.vinService.getVehicle(event).subscribe(vehicledata => { this.vehicleModel = vehicledata; this.updateForm.patchValue({
+//       VINNumber: vehicledata[0].VINNumber,
+//       Year: vehicledata[0].Year,
+//       _id: vehicledata[0]._id,
+//       Make: vehicledata[0].Make,
+//       Model: vehicledata[0].Model,
+//       Color: vehicledata[0].Color,
+//       DateCreated: this.datePipe.transform(vehicledata[0].DateCreated.split('T')[0], 'yyyy-MM-dd'),
+//       AuctionDate: this.datePipe.transform(vehicledata[0].AuctionDate.split('T')[0], 'yyyy-MM-dd'),
+//       ClosingDate: this.datePipe.transform(vehicledata[0].ClosingDate.split('T')[0], 'yyyy-MM-dd'),
+//       RunNumber: vehicledata[0].RunNumber,
+//       LaborDescription: vehicledata[0].LaborDescription,
+//       LaborCost: vehicledata[0].LaborCost,
+//       PartDescription: vehicledata[0].PartDescription,
+//       PartsCost: vehicledata[0].PartsCost,
+//       TotalCost: vehicledata[0].TotalCost
+//     });
+//    });
+//     this.vinPicked = true;
+//   }
 
   onSubmit() {
     this.resetMsgs();
@@ -86,6 +122,7 @@ export class UpdateComponent  implements OnInit {
     },
     err => this._handleSubmitSuccess(err));
   }
+
   private _handleSubmitSuccess(err) {
     this.failError = true;
     this.successMsg = false;
@@ -94,6 +131,7 @@ export class UpdateComponent  implements OnInit {
   private resetMsgs() {
     this.failError = false;
     this.successMsg = false;
+    this.searchError = false;
   }
   // get the form short name to access the form fields
   get f() { return this.updateForm.controls; }

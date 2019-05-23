@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       this.Auth.getUserDetails(target.email1.value, target.password.value)
               .subscribe( data => {
                 if (data.success === true) {
-                  this.router.navigate(['add']);
+                  this.router.navigate(['/reports/summary']);
                   this.Auth.loggedInStatus = true;
                 } else {
                   this.Auth.loggedInStatus = false;

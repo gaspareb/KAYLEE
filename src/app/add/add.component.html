@@ -52,24 +52,16 @@
       <h6 class="text-center">LABOR INFORMATION</h6>
       <div class="form-group">
           <label>Labor Description:</label>
-          <input type="text" formControlName="LaborDescription" class="form-control">
+          <textarea type="text" rows="5" formControlName="LaborDescription" class="form-control"></textarea>
           <div class="alert alert-danger" *ngIf="!f['LaborDescription'].valid && f['LaborDescription'].touched">Labor Description is required!</div>
       </div>
-      <div class="form-group">
-          <label>Labor Cost:</label>
-          <input type="number" name="laborCost" id="LaborCost" formControlName="LaborCost" class="form-control currency">
-          <div class="alert alert-danger" *ngIf="!f['LaborCost'].valid && f['LaborCost'].touched">Labor Cost is required!</div>
-      </div>
+
       <div class="form-group">
           <label>Part Description:</label>
-          <input type="text" formControlName="PartDescription"class="form-control">
+          <textarea type="text" rows="5" formControlName="PartDescription"class="form-control"></textarea>
           <div class="alert alert-danger" *ngIf="!f['PartDescription'].valid && f['PartDescription'].touched">Part Description is required!</div>
       </div>
-      <div class="form-group">
-          <label>Parts Cost:</label>
-          <input type="number" name="PartsCost" id="PartsCost" formControlName="PartsCost" class="form-control currency">
-          <div class="alert alert-danger" *ngIf="!f['PartsCost'].valid && f['PartsCost'].touched">Parts Cost is required!</div>
-      </div>
+
       <div class="form-group">
           <button type="submit" [disabled]="!addForm.valid" class="btn btn-primary">Save</button>&nbsp;
           <button type="reset" class="btn btn-primary" (click)="resetMsgs()">Reset</button>
@@ -79,6 +71,16 @@
     </div>
     <div class="col-md-3">
       <h6 class="text-center">TOTAL COST</h6>
+      <div class="form-group">
+          <label>Labor Cost:</label>
+          <input type="number" name="laborCost" id="LaborCost" formControlName="LaborCost" class="form-control currency">
+          <div class="alert alert-danger" *ngIf="!f['LaborCost'].valid && f['LaborCost'].touched">Labor Cost is required!</div>
+      </div>
+      <div class="form-group">
+          <label>Parts Cost:</label>
+          <input type="number" name="PartsCost" id="PartsCost" formControlName="PartsCost" class="form-control currency">
+          <div class="alert alert-danger" *ngIf="!f['PartsCost'].valid && f['PartsCost'].touched">Parts Cost is required!</div>
+      </div>
       <div class="form-group">
           <label>Total Cost:</label>
           <input type="text" name="TotalCost" id="TotalCost" formControlName="TotalCost" [(ngModel)]="addForm.value.LaborCost + addForm.value.PartsCost" class="form-control">

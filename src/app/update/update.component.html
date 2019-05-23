@@ -4,18 +4,33 @@
       <input type="text" hidden formControlName="_id" class="form-control">
       <input type="text" hidden formControlName="VINNumber" class="form-control">
         <div class=row>
-            <div class="col-sm-2">
-                <div class='form-group'>
-                  <select #t class="form-control" (change)="getVehicle(t.value)">
-                    <option value="" selected disabled>Please select</option>
-                    <option *ngFor="let VINNumber of vinNumbers">
-                      {{ VINNumber.VINNumber }}
-                    </option>
-                    </select>
-                  <small id='vinHelp' class='form-text text-muted'>Choose a VIN to update.</small>
-                </div>
-            </div>
-            <div class="col-sm-10">
+          <!-- <div class="col-sm-6">
+              <div class='form-group'>
+                <select #t class="form-control form-control-sm" (change)="getVehicle(t.value)">
+                  <option value="" selected disabled>Please choose a VIN</option>
+                  <option *ngFor="let VINNumber of vinNumbers">
+                    {{ VINNumber.VINNumber }}
+                  </option>
+                </select>
+              </div>
+            </div> -->
+          <div class="col-sm-12">
+              <div class='form-group'>
+                <input id=searchVIN type="text" formControlName="searchVIN" #search>&nbsp;
+                <button (click)="getVehicleSearch(search.value)" type="button" class="btn btn-primary">Find</button>
+                <br><small id="vinHelp" class="form-text text-muted">Enter a VIN to Update!</small><Br>
+                  <p *ngIf="searchError" class="alert alert-danger" id=searchError>{{ searchErrorMsg }}</p>
+              </div>
+          </div>
+        </div>
+          <br>
+          <div class=row>
+              <label>VIN:&nbsp;</label>
+            <input type="text" disabled formControlName="VINNumber" class="form-control">
+          </div>
+          <br>
+          <div class=row>
+            <div class="col-sm-12">
                 <div class=row>
                   <div class="col-md-3">
                       <h6 class="text-center">VEHICLE INFORMATION</h6>
@@ -62,24 +77,16 @@
                       <h6 class="text-center">LABOR INFORMATION</h6>
                       <div class="form-group">
                           <label>Labor Description:</label>
-                          <input type="text" formControlName="LaborDescription"  class="form-control">
+                          <textarea type="text" rows="5" formControlName="LaborDescription"  class="form-control"></textarea>
                           <div class="alert alert-danger" *ngIf="!f['LaborDescription'].valid && f['LaborDescription'].touched">Labor Description is required!</div>
                       </div>
-                      <div class="form-group">
-                          <label>Labor Cost:</label>
-                          <input type="number" name="laborCost" id="LaborCost" formControlName="LaborCost" class="form-control currency">
-                          <div class="alert alert-danger" *ngIf="!f['LaborCost'].valid && f['LaborCost'].touched">Labor Cost is required!</div>
-                      </div>
+
                       <div class="form-group">
                           <label>Part Description:</label>
-                          <input type="text" formControlName="PartDescription" class="form-control">
+                          <textarea type="text" rows="5" formControlName="PartDescription" class="form-control"></textarea>
                           <div class="alert alert-danger" *ngIf="!f['PartDescription'].valid && f['PartDescription'].touched">Part Description is required!</div>
                       </div>
-                      <div class="form-group">
-                          <label>Parts Cost:</label>
-                          <input type="number" name="PartsCost" id="PartsCost" formControlName="PartsCost" class="form-control currency">
-                          <div class="alert alert-danger" *ngIf="!f['PartsCost'].valid && f['PartsCost'].touched">Parts Cost is required!</div>
-                      </div>
+
                       <div class="form-group">
                           <button type="submit" class="btn btn-primary">Save</button>&nbsp;
                           <br><Br><p *ngIf="failError" class="alert alert-danger" id=saveError>{{ error }}</p>
@@ -87,11 +94,21 @@
                       </div>
                     </div>
                     <div class="col-md-3">
-                      <h6 class="text-center">TOTAL COST</h6>
+                      <h6 class="text-center">COST</h6>
                       <div class="form-group">
-                          <label>Total Cost:</label>
-                          <input type="text" name="TotalCost" id="TotalCost" formControlName="TotalCost"  class="form-control" [(ngModel)]="updateForm.value.LaborCost + updateForm.value.PartsCost" >
+                        <label>Labor Cost:</label>
+                        <input type="number" name="laborCost" id="LaborCost" formControlName="LaborCost" class="form-control currency">
+                        <div class="alert alert-danger" *ngIf="!f['LaborCost'].valid && f['LaborCost'].touched">Labor Cost is required!</div>
                       </div>
+                      <div class="form-group">
+                        <label>Parts Cost:</label>
+                        <input type="number" name="PartsCost" id="PartsCost" formControlName="PartsCost" class="form-control currency">
+                        <div class="alert alert-danger" *ngIf="!f['PartsCost'].valid && f['PartsCost'].touched">Parts Cost is required!</div>
+                      </div>
+                      <div class="form-group">
+                        <label>Total Cost:</label>
+                        <input type="text" name="TotalCost" id="TotalCost" formControlName="TotalCost"  class="form-control" [(ngModel)]="updateForm.value.LaborCost + updateForm.value.PartsCost" >
+                    </div>
                     </div>
                   </div>
             </div>

@@ -2,22 +2,21 @@
     <a class="navbar-brand js-scroll-trigger" href="">Kaylee Collision Vehicle Tracking System</a>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" [routerLink]="['/add']" routerLinkActive="active current">Add</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger"[routerLink]="['/update']" routerLinkActive="active current">Update</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" [routerLink]="['/delete']" routerLinkActive="active current">Delete</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" routerLinkActive="active current" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                  <a class="dropdown-item"[routerLink]="['/reports/summary']" >Summary Report</a>
-                  <a class="dropdown-item" [routerLink]="['/reports/itemized']" >Itemized Report</a>
-                </div>
-              </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" [routerLink]="['/reports/summary']" routerLinkActive="active current">Summary Report</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" [routerLink]="['/reports/itemized']" routerLinkActive="active current">Itemized Report</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" [routerLink]="['/add']" routerLinkActive="active current">Add</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link js-scroll-trigger"[routerLink]="['/update']" routerLinkActive="active current">Update</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" [routerLink]="['/delete']" routerLinkActive="active current">Delete</a>
+          </li>
         </ul>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

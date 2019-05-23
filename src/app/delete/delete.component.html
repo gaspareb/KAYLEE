@@ -1,6 +1,6 @@
 <div class="container">
   <h3>Delete Vehicle Menu</h3>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <select #t class="form-control">
         <option value="" selected disabled>Please select</option>
         <option *ngFor="let VINNumber of vinNumbers">
@@ -8,8 +8,18 @@
         </option>
       </select>
       <small id="vinHelp" class="form-text text-muted">This will permanently delete this VIN.</small>
+    </div> -->
+  <form>
+    <div class=row>
+        <div class="col-sm-12">
+          <div class='form-group'>
+            <input id=searchVIN formControlName=searchVIN type="text" #search>&nbsp;
+          <button type="submit" class="btn btn-primary" (click)="deleteVIN(search.value)">Submit</button>
+          <br><small id="vinHelp" class="form-text text-muted">Enter a VIN to DELETE! This will permanently delete this VIN.</small><Br>
+            <p *ngIf="failError" class="alert alert-danger" id=saveError>{{ error }}</p>
+            <p *ngIf="successMsg" class="alert alert-success" id=saveSuccess>{{ message }}</p>
+          </div>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary" (click)="deleteVIN(t.value)">Submit</button>
-    <br><Br><p *ngIf="failError" class="alert alert-danger" id=saveError>{{ error }}</p>
-      <p *ngIf="successMsg" class="alert alert-success" id=saveSuccess>{{ message }}</p>
+  </form>
 </div>

@@ -1,60 +1,80 @@
-<div class=container>
+<div class="container">
   <h3>Itemized Report</h3>
-      <div class=row>
-        <div class="col-sm-6">
-            <div class='form-group'>
-              <label>Auction Date</label>
-              <select #t class="form-control" (change)="getItemized(t.value)">
-                <option value="" selected disabled>Please select</option>
-                <option *ngFor="let auctionDate of auctionDates">
-                  {{ auctionDate.AuctionDate.split("T")[0]  | date: 'yyyy-MM-dd'}}
-                </option>
-              </select>
-            </div>
-            <div class='form-group'>
-              <button [disabled]="!hasChanged" (click)="getItemized(t.value)" id=theResetButton type="button" class="btn btn-primary" toggle>Reset the Form</button>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Auction Date</label>
+        <select #t class="form-control" (change)="getItemized(t.value)">
+          <option value="" selected disabled>Please select</option>
+          <option *ngFor="let auctionDate of auctionDates">
+            {{ auctionDate.AuctionDate.split("T")[0] | date: "yyyy-MM-dd" }}
+          </option>
+        </select>
       </div>
+      <div class="form-group">
+        <button [disabled]="!hasChanged" (click)="getItemized(t.value)" id="theResetButton" type="button"
+          class="btn btn-primary" toggle>Reset the Form</button>
+      </div>
+    </div>
+  </div>
 </div>
 <form [formGroup]="itemizedForm" (ngSubmit)="printMe()">
-  <div class=section name=itemizedSection id=itemizedSection  *ngIf="show">
-      <table  class="table table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th><button [disabled]="!hasChecks" id=theButton type="submit" class="btn btn-primary">Select</button></th>
-            <th>Run</th>
-            <th>VIN</th>
-            <th>Year</th>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Color</th>
-            <th>Labor Description</th>
-            <th>Labor Cost</th>
-            <th>Parts Description</th>
-            <th>Parts Cost</th>
-            <th>Total Cost</th>
-          </tr>
-        </thead>
-        <tbody  *ngFor="let vehicle of itemized">
-          <tr>
-            <td><input type="checkbox" name=vins id=vins (change)="onClicked($event)" value="{{ vehicle.VINNumber }}"></td>
-            <td>{{ vehicle.RunNumber }}</td>
-            <td>{{ vehicle.VINNumber }}</td>
-            <td>{{ vehicle.Year }}</td>
-            <td>{{ vehicle.Make }}</td>
-            <td>{{ vehicle.Model }}</td>
-            <td>{{ vehicle.Color }}</td>
-            <td>{{ vehicle.LaborDescription }}</td>
-            <td>{{ vehicle.LaborCost | currency }}</td>
-            <td>{{ vehicle.PartDescription }}</td>
-            <td>{{ vehicle.PartsCost | currency }}</td>
-            <td>{{ vehicle.Total | currency}}</td>
-          </tr>
-          <tr>
-              <th colspan=2>Created Date:</th><td colspan=4>{{ vehicle.DateCreated.split("T")[0]  | date: 'yyyy-MM-dd' }}</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="section" name="itemizedSection" id="itemizedSection" *ngIf="show">
+    <div class="row">
+      <div class="col-sm-1">
+        <div class='form-group'>
+          <button [disabled]="!hasChecks" id=theButton type="submit" class="btn btn-primary">Select</button>
+        </div>
+      </div>
     </div>
+    <div class="row-bordered" *ngFor="let vehicle of itemized">
+      <div class=row>
+        <div  class="col-sm-1">
+          <input type="checkbox" name=vins id=vins (change)="onClicked($event)" value="{{ vehicle.VINNumber }}">
+        </div>
+        <div class="col-sm-1">
+            <label><b>Run:&nbsp;</b>{{ vehicle.RunNumber }}</label>
+        </div>
+        <div class="col-sm-2">
+            <label><b>VIN:&nbsp;</b>{{ vehicle.VINNumber }}</label>
+        </div>
+        <div class="col-sm-2">
+            <label><b>Year:&nbsp;</b>{{ vehicle.Year }}</label>
+        </div>
+        <div class="col-sm-2">
+            <label><b>Make:&nbsp;</b>{{ vehicle.Make }}</label>
+        </div>
+        <div class="col-sm-2">
+            <label><b>Model:&nbsp;</b>{{ vehicle.Model }}</label>
+        </div>
+        <div class="col-sm-2">
+            <label><b>Color:&nbsp;</b>{{ vehicle.Color }}</label>
+        </div>
+      </div>
+      <div class=row>
+          <div class="col-sm-4">
+              <label><b>Labor Description:&nbsp;</b>{{ vehicle.LaborDescription }}</label>
+          </div>
+          <div class="col-sm-4">
+              <label><b>Labor Cost:&nbsp;</b>{{ vehicle.LaborCost | currency }}</label>
+          </div>
+      </div>
+      <div class=row>
+          <div class="col-sm-4">
+              <label><b>Parts Description:&nbsp;</b>{{ vehicle.PartDescription }}</label>
+          </div>
+          <div class="col-sm-4">
+              <label><b>Parts Cost:&nbsp;</b>{{ vehicle.PartsCost | currency }}</label>
+          </div>
+      </div>
+      <div class=row>
+          <div class="col-sm-4">
+              <label><b>Created Date:&nbsp;</b>{{ vehicle.DateCreated.split("T")[0] | date: 'yyyy-MM-dd' }}</label>
+          </div>
+          <div class="col-sm-4">
+              <label><b>Total Cost:&nbsp;</b>{{ vehicle.Total | currency }}</label>
+          </div>
+      </div><br>
+    </div>
+  </div>
 </form>
