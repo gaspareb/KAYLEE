@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { AddComponent } from './add/add.component';
 import { ItemizedComponent } from './reports/itemized/itemized.component';
 import { SummmaryComponent } from './reports/summmary/summmary.component';
+import { CreatedDateComponent } from './reports/created-date/created-date.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
@@ -37,6 +38,11 @@ const routes: Routes = [
   {
     path: 'reports/summary',
     component: SummmaryComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reports/created-date',
+    component: CreatedDateComponent,
     canActivate: [AuthGuard]
   },
   {

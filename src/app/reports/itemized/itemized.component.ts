@@ -34,33 +34,39 @@ export class ItemizedComponent implements OnInit {
 
   }
   getItemized(auctionDate: any) {
-// tslint:disable-next-line: max-line-length
+  // tslint:disable-next-line: max-line-length
     this.checkedVins = [];
-    this.vinService.getItemized(auctionDate).subscribe(data => { this.itemized = data; });
+    this.vinService.getItemized(auctionDate).subscribe(data => { this.itemized = data; },
+    err => console.log(err));
+
     if (document.getElementById('theButton') != null) {
       document.getElementById('theButton').innerHTML = 'Select';
     }
+
     if (!this.show) {
       this.show = !this.show;
     }
     this.hasChecks = false;
-    this.hasChanged = false;
+    this.hasChanged = true;
   }
 
   onClicked(event) {
     this.checkedVins.push(event.target.value);
     this.hasChecks = true;
   }
-
+  selectThemAll() {
+    window.print();
+  }
   printMe() {
     if (document.getElementById('theButton').innerHTML === 'Print') {
       window.print();
     } else {
       this.hasChanged = true;
     }
+
     if (this.checkedVins) {
       document.getElementById('theButton').innerHTML = 'Print';
-      this.vinService.printItemized(this.checkedVins).subscribe(data => { this.itemized = data; });
+      this.vinService.printItemized(this.checkedVins).subscribe(data => { this.itemized = data;});
     }
   }
 }

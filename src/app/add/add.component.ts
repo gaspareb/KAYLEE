@@ -30,8 +30,18 @@ export class AddComponent implements OnInit {
       RunNumber: ['', Validators.required],
       LaborDescription: ['', Validators.required],
       LaborCost: ['', Validators.required],
-      PartDescription: ['', Validators.required],
-      PartsCost: ['', Validators.required],
+      PartDescription: ['', ],
+      PartsCost: ['', ],
+      PartDescription1: ['', ],
+      PartsCost1: ['', ],
+      PartDescription2: ['', ],
+      PartsCost2: ['', ],
+      PartDescription3: ['', ],
+      PartsCost3: ['', ],
+      PartDescription4: ['', ],
+      PartsCost4: ['', ],
+      PartDescription5: ['', ],
+      PartsCost5: ['', ],
       TotalCost: new FormControl({ value: '0.00', disabled: true})
     });
     this.successMsg = false;
@@ -65,5 +75,9 @@ export class AddComponent implements OnInit {
 
   // get the form short name to access the form fields
   get f() { return this.addForm.controls; }
+
+  addCosts() {
+
+  }
 
 }

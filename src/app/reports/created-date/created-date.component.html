@@ -1,0 +1,25 @@
+<div class=container>
+  <div class="row noprint">
+    <div class="col-sm-6">
+      <h3>Created By Date Report Menu</h3>
+    </div>
+    <div class="col-sm-6">
+      <label>Created Date:</label>
+      <select #t class="form-control" (change)="getCreated(t.value)">
+        <option value="" selected disabled>Please select</option>
+        <option *ngFor="let createdDate of createdDates">
+          {{ createdDate.DateCreated.split("T")[0] | date: "yyyy-MM-dd" }}
+        </option>
+      </select>
+    </div>
+  </div>
+  </div>
+  <form [formGroup]="createdForm" >
+    <div *ngFor="let vehicle of created" style="page-break-after: always;">
+      <br><div class=row>
+        <div class="col-sm-12">
+            <label><b>Count of Vehicles created on {{ t.value }}:&nbsp;</b>{{ vehicle.COUNT }}</label>
+        </div>
+      </div>
+    </div>
+  </form>

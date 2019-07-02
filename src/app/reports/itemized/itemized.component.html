@@ -1,80 +1,119 @@
-<div class="container">
-  <h3>Itemized Report</h3>
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="form-group">
-        <label>Auction Date</label>
-        <select #t class="form-control" (change)="getItemized(t.value)">
-          <option value="" selected disabled>Please select</option>
-          <option *ngFor="let auctionDate of auctionDates">
-            {{ auctionDate.AuctionDate.split("T")[0] | date: "yyyy-MM-dd" }}
-          </option>
-        </select>
-      </div>
-      <div class="form-group">
-        <button [disabled]="!hasChanged" (click)="getItemized(t.value)" id="theResetButton" type="button"
-          class="btn btn-primary" toggle>Reset the Form</button>
-      </div>
-    </div>
+<div class=container>
+<div class="row noprint">
+  <div class="col-sm-6">
+    <h3>Itemized Report Menu</h3>
+    <button [disabled]="!hasChanged" (click)="getItemized(t.value)" id="theResetButton" type="button" class="btn btn-primary" toggle>Reset the Form</button>
+    &nbsp;<button [disabled]="!hasChecks" (click)="printMe()" id=theButton type="button" class="btn btn-primary">Print</button>
+    &nbsp;<button [disabled]="hasChecks" (click)="selectThemAll()"  id=theButton type="button" class="btn btn-primary">Print All</button>
+  </div>
+  <div class="col-sm-6">
+    <label>Auction Date:</label>
+    <select #t class="form-control" (change)="getItemized(t.value)">
+      <option value="" selected disabled>Please select</option>
+      <option *ngFor="let auctionDate of auctionDates">
+        {{ auctionDate.AuctionDate.split("T")[0] | date: "yyyy-MM-dd" }}
+      </option>
+    </select>
   </div>
 </div>
-<form [formGroup]="itemizedForm" (ngSubmit)="printMe()">
-  <div class="section" name="itemizedSection" id="itemizedSection" *ngIf="show">
-    <div class="row">
-      <div class="col-sm-1">
-        <div class='form-group'>
-          <button [disabled]="!hasChecks" id=theButton type="submit" class="btn btn-primary">Select</button>
+</div>
+<form [formGroup]="itemizedForm" >
+    <div *ngFor="let vehicle of itemized" style="page-break-after: always;">
+      <div class=row>
+        <div  class="col-sm-1 noprint">
+            <b>Select:&nbsp;</b><input type="checkbox" name=vins id=vins (change)="onClicked($event)" value="{{ vehicle.VINNumber }}">
+        </div>
+        <div class="col-sm-6">
+            <label><b>AuctionDate:&nbsp;</b>{{ vehicle.AuctionDate.split("T")[0] | date: "yyyy-MM-dd" }}</label>
         </div>
       </div>
-    </div>
-    <div class="row-bordered" *ngFor="let vehicle of itemized">
-      <div class=row>
-        <div  class="col-sm-1">
-          <input type="checkbox" name=vins id=vins (change)="onClicked($event)" value="{{ vehicle.VINNumber }}">
-        </div>
-        <div class="col-sm-1">
+      <br><div class=row>
+        <div class="col-sm-6">
             <label><b>Run:&nbsp;</b>{{ vehicle.RunNumber }}</label>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-6">
             <label><b>VIN:&nbsp;</b>{{ vehicle.VINNumber }}</label>
         </div>
-        <div class="col-sm-2">
+      </div>
+      <br><div class=row>
+        <div class="col-sm-6">
             <label><b>Year:&nbsp;</b>{{ vehicle.Year }}</label>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-6">
             <label><b>Make:&nbsp;</b>{{ vehicle.Make }}</label>
         </div>
-        <div class="col-sm-2">
+      </div>
+      <br><div class=row>
+        <div class="col-sm-6">
             <label><b>Model:&nbsp;</b>{{ vehicle.Model }}</label>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-6">
             <label><b>Color:&nbsp;</b>{{ vehicle.Color }}</label>
         </div>
       </div>
-      <div class=row>
-          <div class="col-sm-4">
+      <br><div class=row>
+          <div class="col-sm-6">
               <label><b>Labor Description:&nbsp;</b>{{ vehicle.LaborDescription }}</label>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-6">
               <label><b>Labor Cost:&nbsp;</b>{{ vehicle.LaborCost | currency }}</label>
           </div>
       </div>
-      <div class=row>
-          <div class="col-sm-4">
+      <br><div class=row>
+          <div class="col-sm-6">
               <label><b>Parts Description:&nbsp;</b>{{ vehicle.PartDescription }}</label>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-6">
               <label><b>Parts Cost:&nbsp;</b>{{ vehicle.PartsCost | currency }}</label>
           </div>
       </div>
-      <div class=row>
-          <div class="col-sm-4">
+      <br><div class=row>
+        <div class="col-sm-6">
+            <label><b>Parts 2 Description:&nbsp;</b>{{ vehicle.PartDescription1 }}</label>
+        </div>
+        <div class="col-sm-6">
+            <label><b>Parts 3 Cost:&nbsp;</b>{{ vehicle.PartsCost1 | currency }}</label>
+        </div>
+      </div>
+      <br><div class=row>
+        <div class="col-sm-6">
+            <label><b>Parts 3 Description:&nbsp;</b>{{ vehicle.PartDescription2 }}</label>
+        </div>
+        <div class="col-sm-6">
+            <label><b>Parts 3 Cost:&nbsp;</b>{{ vehicle.PartsCost2 | currency }}</label>
+        </div>
+      </div>
+      <br><div class=row>
+        <div class="col-sm-6">
+            <label><b>Parts 4 Description:&nbsp;</b>{{ vehicle.PartDescription3 }}</label>
+        </div>
+        <div class="col-sm-6">
+            <label><b>Parts 4 Cost:&nbsp;</b>{{ vehicle.PartsCost3 | currency }}</label>
+        </div>
+      </div>
+      <br><div class=row>
+        <div class="col-sm-6">
+            <label><b>Parts 5 Description:&nbsp;</b>{{ vehicle.PartDescription4 }}</label>
+        </div>
+        <div class="col-sm-6">
+            <label><b>Parts 5 Cost:&nbsp;</b>{{ vehicle.PartsCost4 | currency }}</label>
+        </div>
+      </div>
+      <br><div class=row>
+        <div class="col-sm-6">
+            <label><b>Parts 6 Description:&nbsp;</b>{{ vehicle.PartDescription5 }}</label>
+        </div>
+        <div class="col-sm-6">
+            <label><b>Parts 6 Cost:&nbsp;</b>{{ vehicle.PartsCost5 | currency }}</label>
+        </div>
+      </div>
+      <br><div class=row>
+          <div class="col-sm-6">
               <label><b>Created Date:&nbsp;</b>{{ vehicle.DateCreated.split("T")[0] | date: 'yyyy-MM-dd' }}</label>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-6">
               <label><b>Total Cost:&nbsp;</b>{{ vehicle.Total | currency }}</label>
           </div>
-      </div><br>
+      </div><hr>
     </div>
-  </div>
 </form>

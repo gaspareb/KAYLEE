@@ -80,13 +80,36 @@
                           <textarea type="text" rows="5" formControlName="LaborDescription"  class="form-control"></textarea>
                           <div class="alert alert-danger" *ngIf="!f['LaborDescription'].valid && f['LaborDescription'].touched">Labor Description is required!</div>
                       </div>
-
                       <div class="form-group">
                           <label>Part Description:</label>
-                          <textarea type="text" rows="5" formControlName="PartDescription" class="form-control"></textarea>
+                          <input type="text" formControlName="PartDescription" class="form-control">
                           <div class="alert alert-danger" *ngIf="!f['PartDescription'].valid && f['PartDescription'].touched">Part Description is required!</div>
                       </div>
-
+                      <div class="form-group">
+                        <label>Part 2 Description:</label>
+                        <input type="text" formControlName="PartDescription1"class="form-control">
+                        <div class="alert alert-danger" *ngIf="!f['PartDescription1'].valid && f['PartDescription1'].touched">Part 2 Description is required!</div>
+                      </div>
+                      <div class="form-group">
+                        <label>Part 3 Description:</label>
+                        <input type="text" formControlName="PartDescription2"class="form-control">
+                        <div class="alert alert-danger" *ngIf="!f['PartDescription2'].valid && f['PartDescription2'].touched">Part 3 Description is required!</div>
+                      </div>
+                      <div class="form-group">
+                        <label>Part 4 Description:</label>
+                        <input type="text" formControlName="PartDescription3"class="form-control">
+                        <div class="alert alert-danger" *ngIf="!f['PartDescription3'].valid && f['PartDescription3'].touched">Part 4 Description is required!</div>
+                      </div>
+                      <div class="form-group">
+                        <label>Part 5 Description:</label>
+                        <input type="text" formControlName="PartDescription4"class="form-control">
+                        <div class="alert alert-danger" *ngIf="!f['PartDescription4'].valid && f['PartDescription4'].touched">Part 5 Description is required!</div>
+                      </div>
+                      <div class="form-group">
+                        <label>Part 6 Description:</label>
+                        <input type="text" formControlName="PartDescription5"class="form-control">
+                        <div class="alert alert-danger" *ngIf="!f['PartDescription5'].valid && f['PartDescription5'].touched">Part 6 Description is required!</div>
+                      </div>
                       <div class="form-group">
                           <button type="submit" class="btn btn-primary">Save</button>&nbsp;
                           <br><Br><p *ngIf="failError" class="alert alert-danger" id=saveError>{{ error }}</p>
@@ -100,15 +123,45 @@
                         <input type="number" name="laborCost" id="LaborCost" formControlName="LaborCost" class="form-control currency">
                         <div class="alert alert-danger" *ngIf="!f['LaborCost'].valid && f['LaborCost'].touched">Labor Cost is required!</div>
                       </div>
+                      <div class=row>&nbsp;</div>
+                      <div class=row>&nbsp;</div>
+                      <div class=row>&nbsp;</div>
+                      <div class=row>&nbsp;</div>
                       <div class="form-group">
                         <label>Parts Cost:</label>
                         <input type="number" name="PartsCost" id="PartsCost" formControlName="PartsCost" class="form-control currency">
                         <div class="alert alert-danger" *ngIf="!f['PartsCost'].valid && f['PartsCost'].touched">Parts Cost is required!</div>
                       </div>
                       <div class="form-group">
-                        <label>Total Cost:</label>
-                        <input type="text" name="TotalCost" id="TotalCost" formControlName="TotalCost"  class="form-control" [(ngModel)]="updateForm.value.LaborCost + updateForm.value.PartsCost" >
-                    </div>
+                        <label>Parts 2 Cost:</label>
+                        <input type="number" name="PartsCost1" id="PartsCost1" formControlName="PartsCost1" class="form-control currency">
+                        <div class="alert alert-danger" *ngIf="!f['PartsCost1'].valid && f['PartsCost1'].touched">Parts 2 Cost is required!</div>
+                      </div>
+                      <div class="form-group">
+                        <label>Parts 3 Cost:</label>
+                        <input type="number" name="PartsCost2" id="PartsCost2" formControlName="PartsCost2" class="form-control currency">
+                        <div class="alert alert-danger" *ngIf="!f['PartsCost2'].valid && f['PartsCost2'].touched">Parts 3 Cost is required!</div>
+                      </div>
+                      <div class="form-group">
+                        <label>Parts 4 Cost:</label>
+                        <input type="number" name="PartsCost3" id="PartsCost3" formControlName="PartsCost3" class="form-control currency">
+                        <div class="alert alert-danger" *ngIf="!f['PartsCost3'].valid && f['PartsCost3'].touched">Parts 4 Cost is required!</div>
+                      </div>
+                      <div class="form-group">
+                        <label>Parts 5 Cost:</label>
+                        <input type="number" name="PartsCost4" id="PartsCost4" formControlName="PartsCost4" class="form-control currency">
+                        <div class="alert alert-danger" *ngIf="!f['PartsCost4'].valid && f['PartsCost4'].touched">Parts 5 Cost is required!</div>
+                      </div>
+                      <div class="form-group">
+                        <label>Parts 6 Cost:</label>
+                        <input type="number" name="PartsCost5" id="PartsCost5" formControlName="PartsCost5" class="form-control currency">
+                        <div class="alert alert-danger" *ngIf="!f['PartsCost5'].valid && f['PartsCost5'].touched">Parts 6 Cost is required!</div>
+                      </div>
+                      <div class="form-group">
+                        <b><label>Total Cost:</label>
+                        {{ updateForm.value.LaborCost + updateForm.value.PartsCost + updateForm.value.PartsCost1 + updateForm.value.PartsCost2 + updateForm.value.PartsCost3 + updateForm.value.PartsCost4 + updateForm.value.PartsCost5 | currency }}
+                      </b>
+                      </div>
                     </div>
                   </div>
             </div>

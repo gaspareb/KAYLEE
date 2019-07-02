@@ -19,6 +19,7 @@ import { SummmaryComponent } from './reports/summmary/summmary.component';
 import { DatePipe } from '@angular/common';
 import { AuthGuard } from './auth.guard';
 import { NavComponent } from './nav/nav.component';
+import { CreatedDateComponent } from './reports/created-date/created-date.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NavComponent } from './nav/nav.component';
     AddComponent,
     ItemizedComponent,
     SummmaryComponent,
-    NavComponent
+    NavComponent,
+    CreatedDateComponent
     ],
   imports: [
     BrowserModule,
@@ -48,6 +50,7 @@ import { NavComponent } from './nav/nav.component';
       {path: 'delete' , component: DeleteComponent, canActivate: [AuthGuard]},
       {path: 'reports/itemized' , component: ItemizedComponent, canActivate: [AuthGuard]},
       {path: 'reports/summary' , component: SummmaryComponent, canActivate: [AuthGuard]},
+      {path: 'reports/created-date' , component: SummmaryComponent, canActivate: [AuthGuard]},
       {path: 'login' , component: LoginComponent},
       {path: '**' , component: LoginComponent}
     ])

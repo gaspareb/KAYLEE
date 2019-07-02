@@ -44,8 +44,18 @@ export class UpdateComponent  implements OnInit {
       RunNumber: ['', Validators.required],
       LaborDescription: ['', Validators.required],
       LaborCost: ['', Validators.required],
-      PartDescription: ['', Validators.required],
-      PartsCost: ['', Validators.required],
+      PartDescription: ['', ],
+      PartsCost: ['', ],
+      PartDescription1: ['', ],
+      PartsCost1: ['', ],
+      PartDescription2: ['', ],
+      PartsCost2: ['', ],
+      PartDescription3: ['', ],
+      PartsCost3: ['', ],
+      PartDescription4: ['', ],
+      PartsCost4: ['', ],
+      PartDescription5: ['', ],
+      PartsCost5: ['', ],
       TotalCost: new FormControl({ value: '0.00', disabled: true})
     });
   }
@@ -76,7 +86,16 @@ export class UpdateComponent  implements OnInit {
           LaborCost: vehicledata[0].LaborCost,
           PartDescription: vehicledata[0].PartDescription,
           PartsCost: vehicledata[0].PartsCost,
-          TotalCost: vehicledata[0].TotalCost
+          PartDescription1: vehicledata[0].PartDescription1,
+          PartsCost1: vehicledata[0].PartsCost1,
+          PartDescription2: vehicledata[0].PartDescription2,
+          PartsCost2: vehicledata[0].PartsCost2,
+          PartDescription3: vehicledata[0].PartDescription3,
+          PartsCost3: vehicledata[0].PartsCost3,
+          PartDescription4: vehicledata[0].PartDescription4,
+          PartsCost4: vehicledata[0].PartsCost4,
+          PartDescription5: vehicledata[0].PartDescription5,
+          PartsCost5: vehicledata[0].PartsCost5
         });
        }, error => {this.searchError = true; this.searchErrorMsg = error.error.message; });
         this.vinPicked = true;
